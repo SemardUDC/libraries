@@ -6,10 +6,11 @@
 
 #ifndef PRESS_DEBUG
 #define PRESS_DEBUG_PRINT(String)
+
 #endif
 
 Press::Press(uint8_t _pin, void (*_callBackFunction)(void), uint16_t _analog_v, uint16_t _mpa,
-             uint16_t kpa, uint16_t psi)
+             uint16_t _kpa, uint16_t _psi)
 {
     this->pin = _pin;
     this->callBackFunction = _callBackFunction;
@@ -19,17 +20,19 @@ Press::Press(uint8_t _pin, void (*_callBackFunction)(void), uint16_t _analog_v, 
     this->psi = _psi;
 }
 
-Press::dPress(){
-    PRESS_DEBUG_PRINT("Deleting Press Object")}
+Press::~Press()
+{
+    PRESS_DEBUG_PRINT("Deleting Press Object");
+}
 
-Press::begin()
+void Press::begin()
 {
     pinMode(pin, INPUT);
     PRESS_DEBUG_PRINT("Initializing Pin ");
-    check_CallBackFunction();
+    check_CallBackFunction(); //VOID
 }
 
-Press::handle()
+void Press::handle()
 {
     analog_v = analogRead(this->pin);
     float press_MPa = (analog_v / 1024 - 0.1) / 0.75;
@@ -42,9 +45,12 @@ Press::handle()
     this->mpa = press_MPa;
     this->kpa = press_kPa;
     this->psi = press_psi;
+
+    callBackFunction(); //CallBack invocation
 }
 
 bool Press::check_CallBackFunction()
+
 {
     if (!this->callBackFunction)
     {
