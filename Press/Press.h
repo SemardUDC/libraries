@@ -3,57 +3,53 @@
 
 #include <Arduino.h>
 
-class PressureS
+class Press
 {
 
   private:
     uint8_t pin;
+
+    void (*callBackFunction)(void);
+    bool check_CallBackFunction();
+
     uint16_t analog_v;
     uint16_t mpa;
     uint16_t kpa;
     uint16_t psi;
 
-    void (*callBackFunction)(void)
-    {
-        if (callBackFunction)
-        {
-            (*callBackFunction)();
-        }
-    }
-
-    inline void getAnalog_v()
+    inline uint16_t getAnalog_v()
     {
         return this->analog_v;
-    }
+    };
 
   public:
-    Press(uint8_t _pin, void (*callBackFunction)(void) = 0, uint16_t _analog_v, uint16_t _mpa,
+    Press(uint8_t _pin, void (*_callBackFunction)(void) = 0, uint16_t _analog_v, uint16_t _mpa,
           uint16_t _kpa, uint16_t _psi);
 
     void begin();
     void handle();
 
-    virtual dPress;
+    virtual ~Press();
 
     inline void setPing(uint8_t _pin)
     {
         this->pin = _pin;
-    }
+    };
 
-    inline void getMpa()
+    inline uint16_t getMpa()
     {
         return this->mpa;
-    }
+    };
 
-    inline void getKpa()
+    inline uint16_t getKpa()
     {
         return this->kpa;
-    }
+    };
 
-    inline void getPsi()
+    inline uint16_t getPsi()
     {
         return this->psi;
-    }
+    };
 };
 
 #endif
