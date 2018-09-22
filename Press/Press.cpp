@@ -9,8 +9,9 @@
 
 #endif
 
-Press::Press(uint8_t _pin, void (*_callBackFunction)(void), uint16_t _analog_v, uint16_t _mpa,
-             uint16_t _kpa, uint16_t _psi)
+Press::Press(uint8_t _pin, uint16_t _analog_v, uint16_t _mpa,
+             uint16_t _kpa, uint16_t _psi, 
+             void (*_callBackFunction)(void))
 {
     this->pin = _pin;
     this->callBackFunction = _callBackFunction;
