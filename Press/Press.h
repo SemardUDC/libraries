@@ -23,8 +23,9 @@ class Press
     };
 
   public:
-    Press(uint8_t _pin, void (*_callBackFunction)(void) = 0, uint16_t _analog_v, uint16_t _mpa,
-          uint16_t _kpa, uint16_t _psi);
+    Press(uint8_t _pin, uint16_t _analog_v, uint16_t _mpa,
+          uint16_t _kpa, uint16_t _psi,
+          void (*_callBackFunction)(void) = 0);
 
     void begin();
     void handle();
