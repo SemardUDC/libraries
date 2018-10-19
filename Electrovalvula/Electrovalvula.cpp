@@ -1,36 +1,55 @@
 #include "Electrovalvula.h"
 
-Electrovalvula::Electrovalvula(uint8_t _pin, PCF8574& _pcf, uint8_t _estado)
-    : pin(_pin), estado(_estado), pcf(_pcf) {}
+Electrovalvula::Electrovalvula(uint8_t pin, PCF8574& pcf, uint8_t estado)
+    : _pin(pin), _estado(estado), _pcf(pcf) {}
 
 Electrovalvula::~Electrovalvula() {}
 
+uint8_t Electrovalvula::getEstado()
+{
+    return _estado;
+}
+
+void Electrovalvula::setEstado(uint8_t estado)
+{
+    if (estado == ACTIVADO)
+    {
+        _estado = estado;
+        abrir();
+    }
+    else if (estado == DESACTIVADO)
+    {
+        _estado = estado;
+        cerrar();
+    }
+}
+
 void Electrovalvula::abrir()
 {
-    this->pcf.write(this->pin, HIGH);
-    this->estado = ACTIVADO;
+    _pcf.write(_pin, HIGH);
+    _estado = ACTIVADO;
 }
 
 void Electrovalvula::cerrar()
 {
-    this->pcf.write(this->pin, LOW);
-    this->estado = DESACTIVADO;
+    _pcf.write(_pin, LOW);
+    _estado = DESACTIVADO;
 }
 
-void Electrovalvula::abrir(void (*_callback)(void))
+void Electrovalvula::abrir(void (*callback)(void))
 {
-    this->abrir();
-    if (_callback != 0)
+    abrir();
+    if (callback != 0)
     {
-        _callback();
+        callback();
     }
 }
 
-void Electrovalvula::cerrar(void (*_callback)(void))
+void Electrovalvula::cerrar(void (*callback)(void))
 {
-    this->cerrar();
-    if (_callback != 0)
+    cerrar();
+    if (callback != 0)
     {
-        _callback();
+        callback();
     }
 }
