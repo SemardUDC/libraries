@@ -22,3 +22,5 @@ Libreria para la manipulación de sensor de ultrasonido para obtención de medid
   * Librería [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
 ## FlowMeter
 Librería para manipular sensor de flujo de agua para obtener la cantidad de agua en mL. Probado en sensor YF-S201.
+## pH4502c
+Librería para manipular el sensor de PH formado por una sonda de electrodo BNC y el módulo de sensor de detección pH4502c.
