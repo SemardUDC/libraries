@@ -15,4 +15,10 @@ Se utiliza para hacer la lectura de los diferentes sensores del sistema, y se en
 ## PCF8574
 Encargado de manejar la expansión de pines digitales por medio del bus I2C. Envolvente de la librería pcf8574 usada como dependencia, realizada para añadir funcionalidad para gestionar comunicación con múltiples buses.
 * Dependencias
-  * Clase [pcf8574_esp](https://github.com/WereCatf/PCF8574_ESP).
+  * Libería [pcf8574_esp](https://github.com/WereCatf/PCF8574_ESP).
+## Ultrasonic
+Libreria para la manipulación de sensor de ultrasonido para obtención de medidas de distancia en cm. Probado en sensor JSN-SR04t.
+* Dependencias
+  * Librería [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
+## FlowMeter
+Librería para manipular sensor de flujo de agua para obtener la cantidad de agua en mL. Probado en sensor YF-S201.
