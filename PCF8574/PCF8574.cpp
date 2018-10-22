@@ -23,3 +23,11 @@ void PCF8574::write(uint8_t pin, uint8_t value)
 
     _internal_pcf.write(pin, value);
 }
+
+uint8_t PCF8574::read(uint8_t pin)
+{
+    if (_multiple)
+        begin();
+
+    return _internal_pcf.read(pin);
+}
