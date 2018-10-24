@@ -36,20 +36,20 @@ void Electrovalvula::cerrar()
     _estado = DESACTIVADO;
 }
 
-void Electrovalvula::abrir(void (*callback)(void))
+void Electrovalvula::abrir(void (*callback)(uint8_t state))
 {
     abrir();
     if (callback != 0)
     {
-        callback();
+        callback(_estado);
     }
 }
 
-void Electrovalvula::cerrar(void (*callback)(void))
+void Electrovalvula::cerrar(void (*callback)(uint8_t state))
 {
     cerrar();
     if (callback != 0)
     {
-        callback();
+        callback(_estado);
     }
 }

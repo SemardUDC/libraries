@@ -22,8 +22,8 @@ public:
   void abrir();
   void cerrar();
   
-  void abrir(void (*callback)(void));  
-  void cerrar(void (*callback)(void));
+  void abrir(void (*callback)(uint8_t state));  
+  void cerrar(void (*callback)(uint8_t state));
 
   uint8_t getEstado();
   void setEstado(uint8_t estado);

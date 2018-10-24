@@ -1,5 +1,5 @@
-#ifndef ULTRASONIC_H
-#define ULTRASONIC_H
+#ifndef UltrasonicPCF8574_H
+#define UltrasonicPCF8574_H
 
 #include <Arduino.h>
 // Arduino UNO
