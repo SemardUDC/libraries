@@ -2,14 +2,15 @@
 #define Press_h
 
 #include <Arduino.h>
-
+#include "PCF8591.h"
 class Press
 {
 
   private:
+    PCF8591 *pcf;
     uint8_t pin;
 
-    void (*callBackFunction)(void);
+    void (*callBackFunction)(uint16_t);
     bool check_CallBackFunction();
 
     uint16_t analog_v;
@@ -23,9 +24,8 @@ class Press
     };
 
   public:
-    Press(uint8_t _pin, uint16_t _analog_v, uint16_t _mpa,
-          uint16_t _kpa, uint16_t _psi,
-          void (*_callBackFunction)(void) = 0);
+    Press(uint8_t _pin, void (*_callBackFunction)(uint16_t) = 0);
+    Press(uint8_t _pin, PCF8591 &_pcf, void (*_callBackFunction)(uint16_t) = 0);
 
     void begin();
     void handle();
