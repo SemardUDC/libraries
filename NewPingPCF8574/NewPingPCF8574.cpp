@@ -29,12 +29,9 @@ NewPingPCF8574::NewPingPCF8574(uint8_t trigger_pin, uint8_t echo_pin, unsigned i
     set_max_distance(max_cm_distance); // Call function to set the max sensor distance.
 
 #if (defined(__arm__) && (defined(TEENSYDUINO) || defined(PARTICLE))) || DO_BITWISE != true
-    pinMode(echo_pin, INPUT);     // Set echo pin to input (on Teensy 3.x (ARM), pins default to disabled, at least one pinMode() is needed for GPIO mode).
-    pinMode(trigger_pin, OUTPUT); // Set trigger pin to output (on Teensy 3.x (ARM), pins default to disabled, at least one pinMode() is needed for GPIO mode).
 #endif
 
 #if defined(ARDUINO_AVR_YUN)
-    pinMode(echo_pin, INPUT); // Set echo pin to input for the Arduino Yun, not sure why it doesn't default this way.
 #endif
 
 #if ONE_PIN_ENABLED != true && DO_BITWISE == true
@@ -166,7 +163,7 @@ boolean NewPingPCF8574::ping_trigger()
 #endif
 #else
 #if ONE_PIN_ENABLED == true
-    pinMode(_triggerPin, OUTPUT);                            // Set trigger pin to output.
+
 #endif
 
     _pcf.write(_triggerPin, LOW);  // Set the trigger pin low, should already be low, but this will make sure it is.
@@ -176,7 +173,7 @@ boolean NewPingPCF8574::ping_trigger()
     _pcf.write(_triggerPin, LOW);  // Set trigger pin back to low.
 
 #if ONE_PIN_ENABLED == true
-    pinMode(_triggerPin, INPUT);     // Set trigger pin to input (when using one Arduino pin, this is technically setting the echo pin to input as both are tied to the same Arduino pin).
+
 #endif
 
 #if URM37_ENABLED == true
