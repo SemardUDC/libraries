@@ -29,6 +29,7 @@ public:
   void begin();
   void write(uint8_t pin, uint8_t value);
   uint8_t read(uint8_t pin);
+  enum PINS {P0 = 0, P1, P2, P3, P4, P5, P6, P7};
 };
 
 #endif
